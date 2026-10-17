@@ -1,5 +1,6 @@
-【模块 v4.7.3】
-① 「期望状态」文件（maskwant / fastwant）：App 点一下写文件，模块每轮对齐，幂等且重启保持。
-② 看门狗单实例 + PID 精确校验，修掉「守护反复被杀重拉」的耗电死循环。
-③ profile 24 小时内不再全量探测；授权租约容忍 15 分钟。
-④ 授权/租约锁永远不动用户自己的开关。
+【模块 v4.7.6】
+① 重写温度伪装的开关：开启前先把所有可写节点（46 个热区 emul_temp / mode、thermal_message 的 board_sensor_temp 等、strategy-fg/fake_temp）的**原值快照**下来；
+   关闭时逐个写回原值，再兜底把所有热区 emul_temp 归零、thermal_message 清 0。
+   —— 之前只还原了 thermal_zone 和 FAKE，board_sensor_temp / display_therm_temp / charger_temp 一直是假值，所以「关了还是在伪装」。
+② 实测：关闭时还原 93 个节点，日志明确写出「已还原 N 个节点（含 MSG 温区）」。
+③ 其余同 4.7.3：期望状态文件、看门狗单实例、租约容忍 15 分钟。
