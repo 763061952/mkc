@@ -1,6 +1,6 @@
-【模块 v4.7.6】
-① 重写温度伪装的开关：开启前先把所有可写节点（46 个热区 emul_temp / mode、thermal_message 的 board_sensor_temp 等、strategy-fg/fake_temp）的**原值快照**下来；
-   关闭时逐个写回原值，再兜底把所有热区 emul_temp 归零、thermal_message 清 0。
-   —— 之前只还原了 thermal_zone 和 FAKE，board_sensor_temp / display_therm_temp / charger_temp 一直是假值，所以「关了还是在伪装」。
-② 实测：关闭时还原 93 个节点，日志明确写出「已还原 N 个节点（含 MSG 温区）」。
-③ 其余同 4.7.3：期望状态文件、看门狗单实例、租约容忍 15 分钟。
+【模块 v0.3】
+① 修 CPU 温度虚高（红米 Turbo 4 Pro 报 92.7℃）：CPU 温度只取 CPU 簇热区（cpu-*/cpuss-*/cluster-*），
+   不再把 soc-thermal（芯片峰值结温）算进来；找不到 CPU 簇才退回 soc，并夹在 5~120℃。
+② 全面伪装：53 个热区全部写假温度（普通 46 + power_allocator 1 + 电池 6）。
+③ 「关闭」= 全部关掉 + 立刻热重载（清 PID → 拉起新实例 → 旧实例退出）。
+④ 启动清空命令队列，避免热重载时把旧的 all=off 再执行一遍。
