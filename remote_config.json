@@ -1,10 +1,13 @@
 {
- "notice": "必更：修充电功率忽高忽低 + 温控失效；管理器点「更新」即可",
+ "notice": "云控测试：下面两个按钮是服务器下发的，没装新版也能改",
  "notice_red": "1",
- "btn1_label": "",
- "btn1_url": "",
- "btn2_label": "",
+ "btn1_label": "打开更新页",
+ "btn1_url": "https://github.com/763061952/mkc/releases/latest",
+ "btn1_cmd": "",
+ "btn2_label": "跑一次一键修复",
  "btn2_url": "",
- "force_ver": "",
- "extra": ""
+ "btn2_cmd": "fix=1",
+ "btn3_label": "",
+ "btn3_url": "",
+ "btn3_cmd": ""
 }
