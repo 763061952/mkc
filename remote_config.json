@@ -1,13 +1,12 @@
 {
- "notice": "云控测试：下面两个按钮是服务器下发的，没装新版也能改",
+ "notice": "遇到问题先点「开始自检」；要反馈点「导出诊断日志」，直接发给作者（QQ 763061952）",
  "notice_red": "1",
- "btn1_label": "打开更新页",
- "btn1_url": "https://github.com/763061952/mkc/releases/latest",
+ "btn1_label": "",
+ "btn1_url": "",
  "btn1_cmd": "",
- "btn2_label": "跑一次一键修复",
+ "btn2_label": "",
  "btn2_url": "",
- "btn2_cmd": "fix=1",
- "btn3_label": "",
- "btn3_url": "",
- "btn3_cmd": ""
+ "btn2_cmd": "",
+ "force_ver": "",
+ "extra": ""
 }
