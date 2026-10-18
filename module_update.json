@@ -1,6 +1,6 @@
 {
- "version": "v8.8.8",
- "versionCode": 888,
+ "version": "v8.8.9",
+ "versionCode": 889,
  "zipUrl": "https://raw.githubusercontent.com/763061952/mkc/main/mkc_module.zip",
  "changelog": "https://raw.githubusercontent.com/763061952/mkc/main/notes_module.txt"
 }
