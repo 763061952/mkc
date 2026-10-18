@@ -1,10 +1,10 @@
 {
- "notice": "云控已开启：公告、按钮都能远程改，不用发新版",
+ "notice": "必更：修充电功率忽高忽低 + 温控失效；管理器点「更新」即可",
  "notice_red": "1",
- "btn1_label": "打开发布页",
- "btn1_url": "https://github.com/763061952/mkc/releases/latest",
- "btn2_label": "联系作者（QQ 763061952）",
- "btn2_url": "https://qm.qq.com/q/763061952",
+ "btn1_label": "",
+ "btn1_url": "",
+ "btn2_label": "",
+ "btn2_url": "",
  "force_ver": "",
  "extra": ""
 }
