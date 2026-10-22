@@ -1,7 +1,7 @@
-模块 v9.0.68（配套 App 2.9.83）
+模块 v9.0.69（配套 App 2.9.83）
 
 【修复】
-· 亮屏快充不生效（MTK）：充电框架会周期性改写电流/限速节点，fast=on 期间每 30 秒回写放开值
-· 诊断导出包含完整节点普查，便于定位厂商节点
-· 自检放开通道补上 constant_charge_current，MTK 不再误报 FAIL
-· 重任务互斥、温度伪装说明等继续保留
+· 自检误报（MTK）：温度单位兼容 370/37000；放开通道检测补上 constant_charge_current、primary_chg、mtk-master-charger
+· 亮屏快充（MTK）：fast=on 时放开 thermal_message/sconfig 与 charger/Thermal_throttle，off 还原，每 30 秒回写
+· 节点普查：诊断包带完整 probe
+· 重任务互斥、温度伪装说明、排行/充电记录等修复继续保留
