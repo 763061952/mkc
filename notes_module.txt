@@ -1,7 +1,8 @@
-模块 v9.0.69（配套 App 2.9.83）
+模块 v9.0.71（配套 App 2.9.83）
 
 【修复】
-· 自检误报（MTK）：温度单位兼容 370/37000；放开通道检测补上 constant_charge_current、primary_chg、mtk-master-charger
-· 亮屏快充（MTK）：fast=on 时放开 thermal_message/sconfig 与 charger/Thermal_throttle，off 还原，每 30 秒回写
-· 节点普查：诊断包带完整 probe
-· 重任务互斥、温度伪装说明、排行/充电记录等修复继续保留
+· 多守护互抢（快充时好时坏的主因）：启动统一清理两种路径旧实例，kill -9 + 清锁
+· 主循环崩溃：appuse 覆盖全局时间变量导致算术报错，已修复
+· 本次用电显示负数：插电/充满时清掉拔电会话
+· 诊断包自检改用 check.sh；温度单位兼容 370/37000；放开通道补 constant_charge_current/primary_chg
+· 温度伪装说明、排行、充电记录、保存失败等修复继续保留
