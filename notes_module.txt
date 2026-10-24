@@ -1,15 +1,17 @@
-米快充 模块 v9.1.31
+米快充 模块 v9.1.32
 
-【机型白名单】
-· shell-thermal 的 PA 专用温度区间改为按机型白名单启用
-· 白名单配置在 config.sh：PA_WHITELIST=2608BPX34C（逗号分隔，可匹配 ro.product.model / device / marketname）
-· 命中机型：shell-thermal 用 PA_MIN~PA_MAX（25–31℃）
-· 其他机型：完全保持原逻辑（通用 34–40℃，不改 mode）
+【关键修复：命令通道被误杀】
+· 上一版的自愈去重会连守护脚本内部的命令通道子进程一起结束
+· 结果：App 的开关/一键恢复/温度锁定等命令写不进模块，快充开不起来
+· 现在只处理 ppid=1 的独立守护，命令通道与看门狗不再被误伤
 
-【验证（本机 2608BPX34C）】
-· 命中白名单：shell-thermal 26.5℃，mode=disabled，满载 CPU 2.7/2.5GHz 不锁频
-· 临时改成非白名单机型：shell-thermal 37.75℃（原逻辑），符合预期
-· 恢复白名单后重新命中
+【快充】
+· 亮屏快充重新可用：wired_thermal_remove=1、wired_ctrl_limit 按 GEAR_MIN（最放开档）写入
+· 未充电时驱动会把档位清 0，充电期间模块会重新写入
+
+【验证】
+· 命令行 fast=off/on 均生效，日志出现「快充=off/on」
+· 命令文件能被正常消费
 
 【安装】
 刷入 mkc_module.zip 后重启一次。
