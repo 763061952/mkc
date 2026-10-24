@@ -1,21 +1,15 @@
-米快充 模块 v9.1.30
+米快充 模块 v9.1.31
 
-【特定平台限频修复（P1 核心）】
-· shell-thermal（power_allocator）改用 config 里原本就定义好的 PA_MIN/PA_MAX 区间（25–31℃）
-· 此前该热区被当成普通热区写入 34–40℃，高于其 35℃ 控制目标，导致 CPU cooling 拉满、频率被压到 557/1114MHz
-· 其他 CPU/GPU/SoC 热区、电池假温、厂商温度通道全部保持原逻辑
-
-【参数解析】
-· PA_MIN/PA_MAX 解析时去掉行尾注释，自定义值不会再回退默认
-
-【行为修正】
-· 温度锁定关闭时不再覆盖用户手动关闭的温度伪装
-· 单实例锁与去重保持
+【机型白名单】
+· shell-thermal 的 PA 专用温度区间改为按机型白名单启用
+· 白名单配置在 config.sh：PA_WHITELIST=2608BPX34C（逗号分隔，可匹配 ro.product.model / device / marketname）
+· 命中机型：shell-thermal 用 PA_MIN~PA_MAX（25–31℃）
+· 其他机型：完全保持原逻辑（通用 34–40℃，不改 mode）
 
 【验证（本机 2608BPX34C）】
-· shell-thermal：37.75℃ → 26.5℃（PA 区间内）
-· 满载 CPU：小核 2.74GHz、大核 2.54GHz，未出现 557/1114MHz 锁频
-· 关闭伪装后 shell-thermal 恢复真实温度与 mode=enabled
+· 命中白名单：shell-thermal 26.5℃，mode=disabled，满载 CPU 2.7/2.5GHz 不锁频
+· 临时改成非白名单机型：shell-thermal 37.75℃（原逻辑），符合预期
+· 恢复白名单后重新命中
 
 【安装】
 刷入 mkc_module.zip 后重启一次。
